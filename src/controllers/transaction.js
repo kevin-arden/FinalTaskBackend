@@ -88,6 +88,7 @@ exports.getAllTransactions = async (req, res) => {
       attributes: {
         exclude: ["usersId", "createdAt", "updatedAt"],
       },
+      order: [["id", "DESC"]],
     });
 
     if (!transactions) {
@@ -121,7 +122,6 @@ exports.addTransactions = async (req, res) => {
       totalPayment: req.body.totalPayment,
       bookCart: req.body.bookCart,
       status: "Pending",
-      
     });
 
     const bookCart2 = req.body.bookCart;
@@ -144,37 +144,10 @@ exports.addTransactions = async (req, res) => {
       }
     });
 
-    const transaction = await Transactions.findOne({
-      where: { id: data.id },
-      include: [
-        {
-          model: Users,
-          as: "user",
-          attributes: {
-            exclude: [
-              "email",
-              "password",
-              "role",
-              "gender",
-              "phone",
-              "address",
-              "avatar",
-              "createdAt",
-              "updatedAt",
-            ],
-          },
-        },
-         
-      ],
-      attributes: {
-        exclude: ["usersId", "createdAt", "updatedAt"],
-      },
-    });
-
     res.send({
-      messages: "Transaction Successfully Added",
+      messages: "Transaction Successfully Retrieved",
       data: {
-        transaction,
+        data,
       },
     });
   } catch (err) {

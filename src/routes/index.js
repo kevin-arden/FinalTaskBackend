@@ -4,7 +4,12 @@ const { authenticated, isAdmin, checkAuth } = require("../middlewares/auth");
 const { uploadFile } = require("../middlewares/upload");
 
 //books
-const { getBooks, getDetailBook, addBook } = require("../controllers/book");
+const {
+  getBooks,
+  getDetailBook,
+  addBook,
+  downloadBook,
+} = require("../controllers/book");
 
 //users
 const { getUsers, getSingleUser, editUser } = require("../controllers/user");
@@ -27,6 +32,7 @@ const {
 router.get("/books", getBooks);
 router.get("/book/:id", getDetailBook);
 router.post("/book", uploadFile("imageFile", "pdfFile"), addBook);
+router.get("/pdf/:id", downloadBook);
 
 //route users
 router.get("/users", getUsers);

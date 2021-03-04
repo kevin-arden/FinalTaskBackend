@@ -53,6 +53,39 @@ exports.getDetailBook = async (req, res) => {
   }
 };
 
+exports.downloadBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const book = await Books.findOne({
+      where: { id },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+
+    if (!book) {
+      return res.send({
+        message: `Book with id ${id} is not found`,
+      });
+    }
+
+    res.download(book.bookAttachment)
+
+    res.send({
+      status: `Book With id ${id} Successfully Found`,
+      data: {
+        book,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
+
 exports.addBook = async (req, res) => {
   try {
     const createBook = await Books.create({
