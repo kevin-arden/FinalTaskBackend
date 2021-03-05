@@ -15,10 +15,36 @@ exports.getBooks = async (req, res) => {
       },
     });
   } catch (err) {
-      console.log(err);
-      res.status(500).send({
-        message: "Server Error",
-      });
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
+
+exports.getPromoBooks = async (req, res) => {
+  try {
+    const { Op } = require("sequelize");
+    const book = await Books.findAll({
+      where: {
+        price: { [Op.lt]: 150000 },
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+
+    res.send({
+      messages: "Success",
+      data: {
+        book,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
   }
 };
 
@@ -70,7 +96,7 @@ exports.downloadBook = async (req, res) => {
       });
     }
 
-    res.download(book.bookAttachment)
+    res.download(book.bookAttachment);
 
     res.send({
       status: `Book With id ${id} Successfully Found`,
