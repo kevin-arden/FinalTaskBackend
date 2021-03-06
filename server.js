@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 app.use("/image/", express.static("uploads/image"));
 app.use("/pdf", express.static("uploads/pdf"));
 app.use("/api/v1/", router);
-
+app.get("/", (req, res) => {
+  res.send("Express Running");
+});
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
