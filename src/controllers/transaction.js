@@ -67,7 +67,7 @@ exports.getAllTransactions = async (req, res) => {
       include: [
         {
           model: Users,
-          required: true,
+          // required: true,
           as: "user",
           attributes: {
             exclude: [
@@ -83,12 +83,12 @@ exports.getAllTransactions = async (req, res) => {
             ],
           },
         },
-        { model: Books, through: TransactionBooks },
+        // { model: Books, through: TransactionBooks },
       ],
       attributes: {
         exclude: ["usersId", "createdAt", "updatedAt"],
       },
-      order: [["id", "DESC"]],
+      // order: [["id", "DESC"]],
     });
 
     if (!transactions) {
@@ -109,7 +109,7 @@ exports.getAllTransactions = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send({
-      message: "Server Error",
+      message: "Server Error 2",
     });
   }
 };
