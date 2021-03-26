@@ -34,7 +34,7 @@ exports.getTransaction = async (req, res) => {
         },
       ],
       attributes: {
-        exclude: ["users_id", "createdAt", "updatedAt"],
+        exclude: ["userId", "createdAt", "updatedAt"],
       },
     });
 
@@ -86,7 +86,7 @@ exports.getAllTransactions = async (req, res) => {
         // { model: Books, through: TransactionBooks },
       ],
       attributes: {
-        exclude: ["users_id", "createdAt", "updatedAt"],
+        exclude: ["userId", "createdAt", "updatedAt"],
       },
       // order: [["id", "DESC"]],
     });
@@ -192,7 +192,7 @@ exports.editTransaction = async (req, res) => {
           bookOwned: bookOwned2,
         },
         {
-          where: { id: transaction2.users_id },
+          where: { id: transaction2.userId },
         }
       );
       console.log(input);
@@ -208,7 +208,7 @@ exports.editTransaction = async (req, res) => {
         },
       },
       attributes: {
-        exclude: ["users_id", "createdAt", "updatedAt"],
+        exclude: ["userId", "createdAt", "updatedAt"],
       },
     });
 
