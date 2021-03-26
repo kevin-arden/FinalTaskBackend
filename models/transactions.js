@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
 
       Transactions.belongsTo(models.Users, {
         as: "user",
-        foreignKey: "usersId",
+        foreignKey: "users_id",
       });
     }
   }
   Transactions.init(
     {
-      usersId: DataTypes.INTEGER,
+      users_id: DataTypes.INTEGER,
       attachment: DataTypes.STRING,
       totalPayment: DataTypes.INTEGER,
       status: DataTypes.STRING,
