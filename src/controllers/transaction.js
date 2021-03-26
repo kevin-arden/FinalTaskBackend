@@ -117,7 +117,7 @@ exports.getAllTransactions = async (req, res) => {
 exports.addTransactions = async (req, res) => {
   try {
     const data = await Transactions.create({
-      users_id: req.user.id,
+      userId: req.user.id,
       attachment: req.files.attachment[0].filename,
       totalPayment: req.body.totalPayment,
       bookCart: req.body.bookCart,
