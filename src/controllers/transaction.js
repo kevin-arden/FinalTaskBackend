@@ -133,7 +133,7 @@ exports.addTransactions = async (req, res) => {
       try {
         const input = await TransactionBooks.create({
           TransactionId: data.id,
-          BookId: id,
+          bookId: id,
         });
         console.log(input);
       } catch (err) {
