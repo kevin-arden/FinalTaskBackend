@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Transactions.belongsTo(models.Users, {
         as: "user",
-        foreignKey: "userid",
+        foreignKey: "userId",
       });
     }
   }
