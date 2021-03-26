@@ -28,10 +28,10 @@ exports.getTransaction = async (req, res) => {
             ],
           },
         },
-        {
-          model: Books,
-          through: TransactionBooks,
-        },
+        // {
+        //   model: Books,
+        //   through: TransactionBooks,
+        // },
       ],
       attributes: {
         exclude: ["userId", "createdAt", "updatedAt"],
@@ -83,7 +83,7 @@ exports.getAllTransactions = async (req, res) => {
             ],
           },
         },
-        { model: Books, through: TransactionBooks },
+        // { model: Books, through: TransactionBooks },
       ],
       attributes: {
         exclude: ["userId", "createdAt", "updatedAt"],
