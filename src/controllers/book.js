@@ -122,11 +122,9 @@ exports.addBook = async (req, res) => {
       author: req.body.author,
       price: req.body.price,
       description: req.body.description,
-      bookAttachment: req.files.pdfFile[0].filename,
-      thumbnail: req.files.imageFile[0].filename,
+      bookAttachment: req.files.bookAttachment[0].filename,
+      thumbnail: req.files.thumbnail[0].filename,
     });
-
-    console.log(req.files);
 
     const book = await Books.findOne({
       where: { id: createBook.id },

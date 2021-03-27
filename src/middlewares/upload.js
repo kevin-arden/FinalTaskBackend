@@ -1,12 +1,12 @@
 const multer = require("multer");
 
-exports.uploadFile = (imageFile, pdfFile) => {
+exports.uploadFile = (thumbnail, bookAttachment) => {
   //initialisasi multer diskstorage
   //menentukan destionation file diupload
   //menentukan nama file (rename agar tidak ada nama file ganda)
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      if (file.fieldname === imageFile) {
+      if (file.fieldname === thumbnail) {
         cb(null, "uploads/image"); //lokasih penyimpan file
       } else {
         cb(null, "uploads/pdf");
@@ -19,14 +19,14 @@ exports.uploadFile = (imageFile, pdfFile) => {
 
   //function untuk filter file berdasarkan type
   const fileFilter = function (req, file, cb) {
-    if (file.fieldname === imageFile) {
+    if (file.fieldname === thumbnail) {
       if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
         req.fileValidationError = {
           message: "Only image files are allowed!",
         };
         return cb(new Error("Only image files are allowed!"), false);
       }
-    } else if (file.fieldname === pdfFile) {
+    } else if (file.fieldname === bookAttachment) {
       if (!file.originalname.match(/\.(pdf|PDF)$/)) {
         req.fileValidationError = {
           message: "Only pdf files are allowed!",
@@ -50,11 +50,11 @@ exports.uploadFile = (imageFile, pdfFile) => {
     },
   }).fields([
     {
-      name: pdfFile,
+      name: bookAttachment,
       maxCount: 1,
     },
     {
-      name: imageFile,
+      name: thumbnail,
       maxCount: 1,
     },
   ]); //fields digunakan karena file yang diupload lebih dari 1 fields
