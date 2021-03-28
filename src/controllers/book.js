@@ -123,7 +123,7 @@ exports.addBook = async (req, res) => {
       price: req.body.price,
       description: req.body.description,
       bookAttachment: req.files.bookAttachment[0].filename,
-      thumbnail: req.files.thumbnail[0].filename,
+      thumbnail: req.files.attachment[0].filename,
     });
 
     const book = await Books.findOne({
