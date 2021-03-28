@@ -32,7 +32,7 @@ const {
 //route books
 router.get("/books", getBooks);
 router.get("/book/:id", getDetailBook);
-router.post("/book", uploadFile("imageFile", "pdfFile"), addBook);
+router.post("/book", uploadFile("attachment", "bookAttachment"), addBook);
 router.get("/pdf/:id", downloadBook);
 router.get("/promo", getPromoBooks);
 
