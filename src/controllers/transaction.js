@@ -116,6 +116,7 @@ exports.getAllTransactions = async (req, res) => {
 
 exports.addTransactions = async (req, res) => {
   try {
+    console.log(req.files)
     const data = await Transactions.create({
       userId: req.user.id,
       attachment: req.files.attachment[0].filename,
