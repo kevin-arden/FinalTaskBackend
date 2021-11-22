@@ -114,7 +114,7 @@ exports.downloadBook = async (req, res) => {
 
 exports.addBook = async (req, res) => {
   try {
-    console.log(req);
+    console.log(req.files);
     const createBook = await Books.create({
       title: req.body.title,
       publicationDate: req.body.publicationDate,
@@ -124,7 +124,8 @@ exports.addBook = async (req, res) => {
       price: req.body.price,
       description: req.body.description,
       bookAttachment: req.files.bookAttachment[0].filename,
-      thumbnail: req.files.attachment[0].filename,
+      // attachment: req.files.attachment[0].filename,
+      image_id: req.body.image_id,
     });
 
     const book = await Books.findOne({
@@ -144,6 +145,7 @@ exports.addBook = async (req, res) => {
     console.log(err);
     res.status(500).send({
       message: "Server Error",
+      error: err,
     });
   }
 };
