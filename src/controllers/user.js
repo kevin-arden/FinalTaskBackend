@@ -62,7 +62,7 @@ exports.editUser = async (req, res) => {
         gender: req.body.gender,
         phone: req.body.phone,
         password: req.body.password,
-        roles: req.body.roles
+        role: req.body.role
         // avatar: req.files.avatar[0].filename,
       },
       { where: { id } }
