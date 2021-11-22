@@ -52,7 +52,7 @@ exports.editUser = async (req, res) => {
     const users = await Users.findOne({
       where: { id },
       attributes: {
-        exclude: ["password", "createdAt", "updatedAt"],
+        exclude: [ "createdAt", "updatedAt"],
       },
     });
 
@@ -61,6 +61,7 @@ exports.editUser = async (req, res) => {
         email: req.body.email,
         gender: req.body.gender,
         phone: req.body.phone,
+        password: req.body.password,
         // avatar: req.files.avatar[0].filename,
       },
       { where: { id } }
