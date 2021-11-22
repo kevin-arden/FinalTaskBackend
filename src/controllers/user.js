@@ -80,5 +80,7 @@ exports.editUser = async (req, res) => {
         user,
       },
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log(err)
+  }
 };

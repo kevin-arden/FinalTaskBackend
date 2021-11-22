@@ -20,18 +20,24 @@ exports.login = async (req, res) => {
       });
 
     const user = await Users.findOne({
-      where: { Email: email },
+      where: { email },
     });
 
+    console.log(user);
+
+    
     if (!user)
       return res.status(400).send({
-        message: "Your Credentials Is not Valid",
+        message: "Your Email Is not Valid",
+        user: user
       });
 
     const validPass = await bcrypt.compare(password, user.password);
 
+    
     if (!validPass)
       return res.status(400).send({
+        user: user,
         message: "Your Credentials Is not Valid",
       });
 
@@ -59,7 +65,7 @@ exports.login = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send({
-      message: "Server Error",
+      err,
     });
   }
 };
