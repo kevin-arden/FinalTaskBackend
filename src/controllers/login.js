@@ -20,7 +20,7 @@ exports.login = async (req, res) => {
       });
 
     const user = await Users.findOne({
-      where: { email },
+      where: { Email: email },
     });
 
     if (!user)
