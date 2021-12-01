@@ -123,7 +123,7 @@ exports.addBook = async (req, res) => {
       author: req.body.author,
       price: req.body.price,
       description: req.body.description,
-      bookAttachment: req.body.bookattachment,
+      bookAttachment: req.body.bookAttachment,
       image_id: req.body.image_id,
     });
 
