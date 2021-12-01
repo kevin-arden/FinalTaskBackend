@@ -58,11 +58,14 @@ exports.editUser = async (req, res) => {
 
     await Users.update(
       {
+        fullName: req.body.fullName,
         email: req.body.email,
         gender: req.body.gender,
         phone: req.body.phone,
         password: req.body.password,
-        role: req.body.role
+        address: req.body.address,
+        avatar: req.body.avatar,
+        role: req.body.role,
         // avatar: req.files.avatar[0].filename,
       },
       { where: { id } }
