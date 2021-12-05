@@ -148,3 +148,37 @@ exports.addBook = async (req, res) => {
     });
   }
 };
+
+exports.deleteBook = async (req,res) => {
+  try {
+    const {id} = req.params
+
+    const book = await Books.findOne({
+      where: { id },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+
+    if (!book) {
+      return res.send({
+        message: `Book with id ${id} is not found`,
+      });
+    }
+
+    await Books.destroy({
+      where: { id },
+    });
+
+    res.send({
+      messages: "Book Successfully Deleted",
+      data,
+    });
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({
+      message: "Server Error",
+      error: err
+    })
+  }
+}
