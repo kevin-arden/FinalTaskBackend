@@ -10,6 +10,7 @@ const {
   addBook,
   downloadBook,
   getPromoBooks,
+  deleteBook
 } = require("../controllers/book");
 
 //users
@@ -35,7 +36,7 @@ router.get("/book/:id", getDetailBook);
 router.post("/book", uploadFile("attachment", "bookAttachment"), addBook);
 router.get("/pdf/:id", downloadBook);
 router.get("/promo", getPromoBooks);
-
+router.delete("/books/:id", deleteBook);
 //route users
 router.get("/users", getUsers);
 router.patch("/user", authenticated, editUser);
