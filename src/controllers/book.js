@@ -154,7 +154,7 @@ exports.deleteBook = async (req,res) => {
     const {id} = req.params
 
     const book = await Books.findOne({
-      where: { id },
+      where: { id: id },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
@@ -172,7 +172,7 @@ exports.deleteBook = async (req,res) => {
 
     res.send({
       messages: "Book Successfully Deleted",
-      data,
+      book,
     });
   } catch (err) {
     console.log(err)
